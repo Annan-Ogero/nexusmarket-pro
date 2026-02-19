@@ -1,0 +1,7 @@
+{
+  "name": "NexusMarket Pro",
+  "description": "A high-performance, AI-integrated supermarket management system featuring advanced POS, inventory tracking, financial analytics, and intelligent demand forecasting.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
