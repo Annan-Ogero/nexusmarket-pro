@@ -68,7 +68,7 @@ export const validateRenewalKey = (key: string): number | null => {
  * Generates a signed Market License.
  */
 export const generateMarketLicense = async (storeName: string, location: string) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   const prefix = storeName.substring(0, 3).toUpperCase();
   const random = Math.floor(1000 + Math.random() * 9000);
   const salt = Math.random().toString(36).substring(2, 6).toUpperCase();
@@ -123,7 +123,7 @@ export const verifyMarketLicense = (key: string): boolean => {
 
 // Use gemini-3-pro-preview for advanced reasoning in consultation
 export const askConsultant = async (query: string, storeContext: any) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   return safeAiCall(async () => {
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
@@ -135,7 +135,7 @@ export const askConsultant = async (query: string, storeContext: any) => {
 
 // Loss Prevention & Staff Analytics (Gemini 3 Pro)
 export const detectInternalTheft = async (cashierLogs: any[]) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   const fallback = { integrityScore: 95, riskLevel: "STABLE", flaggedEvents: [], auditSummary: "Digital tape is clean. No suspicious patterns detected in recent logs." };
   
   return safeAiCall(async () => {
@@ -170,7 +170,7 @@ export const detectInternalTheft = async (cashierLogs: any[]) => {
 };
 
 export const generateStoreAudit = async (storeData: any) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   return safeAiCall(async () => {
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
@@ -192,7 +192,7 @@ export const generateStoreAudit = async (storeData: any) => {
 };
 
 export const getInventoryInsights = async (inventory: any[]) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   return safeAiCall(async () => {
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
@@ -215,7 +215,7 @@ export const getInventoryInsights = async (inventory: any[]) => {
 };
 
 export const analyzeStaffLoyalty = async (staff: any[]) => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+  const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_API_KEY });
   return safeAiCall(async () => {
     const response = await ai.models.generateContent({
       model: "gemini-3-pro-preview",
